@@ -20,9 +20,9 @@ html {
   --text-secondary: #334155;
   --text-muted: #64748b;
   
-  --primary: #0284c7;       /* NPTEL Ocean Blue */
-  --primary-light: rgba(2, 132, 199, 0.08);
-  --primary-glow: rgba(2, 132, 199, 0.15);
+  --primary: #1d4ed8;       /* NPTEL Deep Blue */
+  --primary-light: rgba(29, 78, 216, 0.08);
+  --primary-glow: rgba(29, 78, 216, 0.15);
   
   --accent: #ea580c;        /* SWAYAM Orange */
   --accent-light: rgba(234, 88, 12, 0.08);
@@ -57,13 +57,13 @@ html {
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
   
-  --primary: #38bdf8;       
-  --primary-light: rgba(56, 189, 248, 0.08);
-  --primary-glow: rgba(56, 189, 248, 0.2);
+  --primary: #3b82f6;       
+  --primary-light: rgba(59, 130, 246, 0.08);
+  --primary-glow: rgba(59, 130, 246, 0.2);
   
-  --accent: #ff983d;        
-  --accent-light: rgba(255, 152, 61, 0.08);
-  --accent-glow: rgba(255, 152, 61, 0.2);
+  --accent: #f97316;        
+  --accent-light: rgba(249, 115, 22, 0.08);
+  --accent-glow: rgba(249, 115, 22, 0.2);
   
   --border-color: rgba(71, 85, 105, 0.4);
   --border-card: rgba(255, 255, 255, 0.05);
@@ -297,9 +297,17 @@ strong {
   font-family: var(--font-body);
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.15em;
+  transition: color var(--transition-speed);
+}
+
+[data-theme="light"] .slide-cover h3 {
+  color: #0509a0;
+}
+
+[data-theme="dark"] .slide-cover h3 {
+  color: var(--primary);
 }
 
 .slide-cover .badge {
@@ -823,6 +831,20 @@ strong {
   display: none !important;
 }
 
+.top-nav-iitg-name {
+  font-weight: 700;
+  font-family: var(--font-title);
+  transition: color var(--transition-speed);
+}
+
+[data-theme="light"] .top-nav-iitg-name {
+  color: #0509a0;
+}
+
+[data-theme="dark"] .top-nav-iitg-name {
+  color: var(--primary);
+}
+
 /* Bottom Controls */
 .controls-bar {
   height: 65px;
@@ -1253,6 +1275,33 @@ strong {
   font-size: 0.95rem;
   color: var(--text-muted);
   line-height: 1.4;
+}
+
+/* --- CET Logo Cover Slide Styles --- */
+.cet-logo-container {
+  margin: 25px auto 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 480px;
+  padding: 10px 20px;
+  border-radius: 16px;
+  transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.cet-logo-container img {
+  max-height: 120px;
+  width: auto;
+  object-fit: contain;
+}
+
+[data-theme="light"] .cet-logo-container {
+  background-color: transparent;
+}
+
+[data-theme="dark"] .cet-logo-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 /* --- Print Stylesheet --- */
