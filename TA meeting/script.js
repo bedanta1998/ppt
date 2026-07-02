@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "3. Overuse of All/None",
       description: "Using 'All' or 'None' as filler options creates semantic ambiguity, especially combined with 'AND' logic.",
       wrongLabel: "❌ Bad Pedagogy",
-      wrongContent: "<strong>Question:</strong> Which of the following are prime numbers?<br>Options: (a) 2 (b) 3 (c) All of the above (d) None<br><br><em>Confusion: If both (a) and (b) are correct, (c) 'All of the above' is technically false (10 and 15 are not prime). Avoid fillers!</em>",
+      wrongContent: "<strong>Question:</strong> Which of the following are prime numbers?<br>Options: (a) 2 (b) 3 (c) All of the above (d) None<br><br><em style='color: var(--danger);'>Bad Pedagogy: Avoid using 'All/None' just because you don't have a good 3rd or 4th choice! It acts as a lazy filler and creates logical confusion.</em>",
       correctLabel: "✅ Best Practice",
-      correctContent: "<strong>Question:</strong> Which of the following are prime numbers?<br>Options: (a) 2 and 3 (b) 3 and 10 (c) 10 and 15 (d) None of the above<br><br><em>Advice: Use 'All' or 'None' strictly for pedagogical reasons, never as a replacement for high-quality options.</em>"
+      correctContent: "<strong>Question:</strong> Which of the following are prime numbers?<br>Options: (a) 2 and 3 (b) 3 and 9 (c) 9 and 15 (d) 10 and 15<br><br><em>Advice: Use 'All' or 'None' ONLY for pedagogical reasons. Avoid using 'AND' and 'None' in the same question. Group options creatively to test real knowledge!</em>"
     },
     {
       title: "4. Numerical Exactness",
@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "5. Ambiguity",
       description: "Using qualifiers like 'most' or 'some' makes questions subjective and confusing.",
       wrongLabel: "❌ Ambiguous Style",
-      wrongContent: "<strong>Question:</strong> Which number is not identified as prime by most students?<br>Options: (a) 2 (b) 3 (c) 10 (d) 15<br><br><em>Confusion: 'Most' is subjective, and students might guess 15 based on personal experience.</em>",
+      wrongContent: "<strong>Question:</strong> Which number is not identified as prime by most students?<br>Options: (a) 2 (b) 3 (c) 10 (d) 15<br><br><em style='color: var(--danger);'>Bad Pedagogy: Testing mind-reading instead of math! 'Most/some' makes it subjective. Also, students may select 10 or 15 simply based on their own personal experience of knowing they aren't prime.</em>",
       correctLabel: "✅ Best Practice",
-      correctContent: "<strong>Question:</strong> Which of the following is a composite number?<br>Options: (a) 2 (b) 3 (c) 17 (d) 15<br><span style='color: var(--success); font-weight: 600;'>Key marked: (d)</span><br><br><em>Advice: Keep questions objective and scientifically rigorous.</em>"
+      correctContent: "<strong>Question:</strong> Which of the following is the only even prime number?<br>Options: (a) 2 (b) 4 (c) 6 (d) 8<br><span style='color: var(--success); font-weight: 600;'>Key marked: (a)</span><br><br><em>Advice: Keep questions objective, direct, and factual. Never rely on subjective qualifiers like 'most' or 'some'.</em>"
     },
     {
       title: "6. Text Auto-grader",
@@ -166,6 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load initial Theme
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
+    updateLogoTheme(savedTheme);
     
     // 4. Setup Interactive Playground Simulators
     setupInteractivePlaygrounds();
@@ -346,6 +347,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const newTheme = (currentTheme === 'dark') ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
+    updateLogoTheme(newTheme);
+  }
+
+  function updateLogoTheme(theme) {
+    const logoLight = document.querySelector('.logo-light');
+    const logoDark = document.querySelector('.logo-dark');
+    if (logoLight && logoDark) {
+      if (theme === 'dark') {
+        logoLight.style.setProperty('display', 'none', 'important');
+        logoDark.style.setProperty('display', 'inline-block', 'important');
+      } else {
+        logoLight.style.setProperty('display', 'inline-block', 'important');
+        logoDark.style.setProperty('display', 'none', 'important');
+      }
+    }
   }
 
   // Fullscreen Toggler

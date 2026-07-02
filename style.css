@@ -145,20 +145,22 @@ body {
   flex-direction: column;
   padding: 55px 75px;
   justify-content: flex-start;
-  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  transform: translateX(40px) scale(0.98);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(30px, 0, 0) scale(0.99);
+  will-change: opacity, transform;
+  backface-visibility: hidden;
   z-index: 1;
 }
 
 .slide.active {
   opacity: 1;
   pointer-events: auto;
-  transform: translateX(0) scale(1);
+  transform: translate3d(0, 0, 0) scale(1);
   z-index: 2;
 }
 
 .slide.prev {
-  transform: translateX(-40px) scale(0.98);
+  transform: translate3d(-30px, 0, 0) scale(0.99);
 }
 
 /* --- Slide Standard Components --- */
@@ -350,6 +352,7 @@ strong {
               box-shadow var(--transition-speed), 
               border-color var(--transition-speed), 
               background-color var(--transition-speed);
+  will-change: transform, box-shadow;
 }
 
 .stat-card:hover {
@@ -664,7 +667,7 @@ code {
   align-items: center;
   gap: 8px;
   box-shadow: var(--shadow-sm);
-  transition: all var(--transition-speed);
+  transition: background-color var(--transition-speed), border-color var(--transition-speed), color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
 }
 
 .btn-ctrl:hover:not(:disabled) {
@@ -737,7 +740,7 @@ code {
 .sidebar-drawer {
   position: absolute;
   top: 0;
-  left: -330px;
+  left: 0;
   width: 330px;
   height: 100%;
   background-color: var(--bg-slide);
@@ -746,11 +749,13 @@ code {
   z-index: 101;
   display: flex;
   flex-direction: column;
-  transition: left var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1);
+  transform: translate3d(-100%, 0, 0);
+  transition: transform var(--transition-speed) cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
 }
 
 .sidebar-overlay.open .sidebar-drawer {
-  left: 0;
+  transform: translate3d(0, 0, 0);
 }
 
 .sidebar-header {
