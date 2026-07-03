@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize Lucide Icons
+  lucide.createIcons();
 
 // --- Slide 19 Interactive QA Data & Renderers ---
   const qaData = [
